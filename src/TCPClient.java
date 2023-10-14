@@ -6,13 +6,15 @@ import java.util.Scanner;
 public class TCPClient {
     public static void main(String[] args) throws IOException {
         Socket sock = new Socket("localhost", 6666); // 连接指定服务器和端口
-        try (InputStream input = sock.getInputStream()) {
-            try (OutputStream output = sock.getOutputStream()) {
-                handle(input, output);
-            }
-        }
-        sock.close();
-        System.out.println("disconnected.");
+//        try (InputStream input = sock.getInputStream()) {
+//            try (OutputStream output = sock.getOutputStream()) {
+//                handle(input, output);
+//            }
+//        }
+        TCPChat c = new TCPChat(sock);
+        c.start();
+//        sock.close();
+//        System.out.println("disconnected.");
     }
 
     private static void handle(InputStream input, OutputStream output) throws IOException {

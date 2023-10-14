@@ -10,8 +10,10 @@ public class TCPServer {
         for (;;) {
             Socket sock = ss.accept();
             System.out.println("connected from " + sock.getRemoteSocketAddress());
-            Thread t = new ServerHandler(sock);
-            t.start();
+//            Thread t = new ServerHandler(sock);
+//            t.start();
+            TCPChat c = new TCPChat(sock);
+            c.start();
         }
     }
 }
